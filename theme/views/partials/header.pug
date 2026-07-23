@@ -1,0 +1,7 @@
+header.site-header
+    .site-header__inner
+        a.site-header__brand(href='/')= app.name || 'Nera site'
+        if app.navigation
+            nav.site-header__nav
+                each item in app.navigation
+                    a.site-header__link(href=item.href)= item.label

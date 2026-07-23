@@ -1,0 +1,10 @@
+doctype html
+html(lang=meta.lang || app.lang || 'en')
+    head
+        include ../partials/head.pug
+    body
+        include ../partials/header.pug
+        main.content
+            != content
+        include ../partials/footer.pug
+        include ../partials/scripts.pug

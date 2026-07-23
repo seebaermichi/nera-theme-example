@@ -1,0 +1,21 @@
+{
+    "name": "@nera-static/theme-example",
+    "version": "0.1.0",
+    "description": "Example Nera theme — the minimal reference for building installable, updatable themes.",
+    "type": "module",
+    "license": "MIT",
+    "keywords": [
+        "nera",
+        "nera-theme",
+        "static-site-generator"
+    ],
+    "files": [
+        "theme"
+    ],
+    "exports": {
+        "./package.json": "./package.json"
+    },
+    "nera": {
+        "generator": ">=4.6.0"
+    }
+}

@@ -1,0 +1,10 @@
+meta(charset='utf-8')
+meta(name='viewport' content='width=device-width, initial-scale=1')
+title= [meta.title, app.name].filter(Boolean).join(' — ')
+if meta.description
+    meta(name='description' content=meta.description)
+link(rel='stylesheet' href='/css/main.css')
+//- Seam: override head-extra.pug in your site's views/partials/ to add your
+//- own <link>/<meta> (e.g. a custom stylesheet) without overriding this file,
+//- so you keep receiving theme updates to the head. See ROADMAP-themes.md §2b.
+include head-extra.pug

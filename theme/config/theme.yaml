@@ -1,0 +1,17 @@
+# Theme defaults.
+#
+# A site's own config/theme.yaml deep-merges OVER this file (objects per key,
+# arrays replaced, site wins at the leaf — ROADMAP-themes.md §1c), so a site can
+# override a single value and inherit the rest, and still receive new keys the
+# theme adds later.
+#
+# NOTE: config/theme.yaml consumption (exposing app.theme.config to templates)
+# is a later slice and not wired up yet. This file documents the intended shape.
+
+# Human-readable label, for a future themes UI.
+label: Example
+
+# Design tokens. A site may override these here; the theme's own main.css reads
+# the corresponding CSS custom properties.
+colors:
+    primary: '#0b7a4b'
