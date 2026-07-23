@@ -91,8 +91,35 @@ npm install ../nera-theme-example      # writes a file: dependency, symlinks it
 - **Change markup:** drop a file with the same path into your site's `views/`.
   Only that file stops updating; everything else still does.
 
+## Using it as a blueprint for your own theme
+
+This package is deliberately minimal so it can be cloned as a starting point.
+To build your own theme from it:
+
+1. **Copy the repo** (clone, or degit to drop the git history):
+   ```bash
+   npx degit github:seebaermichi/nera-theme-example my-theme
+   cd my-theme && git init
+   ```
+2. **Rename the package** in `package.json` — `@yourscope/theme-<name>`, reset
+   `version` to `0.1.0`, update `description`, `repository`, and `author`.
+3. **Keep the plumbing** that lets the generator find the package: `type`,
+   `files: ["theme"]`, and the `exports` entry exposing `./package.json`.
+4. **Edit the payload** under `theme/` — the layouts, page types, partials,
+   `assets/`, and `config/theme.yaml` are all yours to change. Keep the
+   override seams (`head-extra.pug`, `scripts-extra.pug`) if you want consumers
+   to extend without forking.
+5. **Set `nera.generator`** to the generator range your theme needs.
+6. **Add a `LICENSE`** and start a `CHANGELOG.md`.
+
+The layout, the page-type split under `views/pages/`, the token-driven CSS and
+the side-effect-in-entry JS convention are all patterns worth keeping — they are
+what make a theme updatable rather than fork-once.
+
 ## Requirements
 
 Requires a Nera generator with theme support (`nera.generator` in
-`package.json`). That capability is additive and not yet released; the version
-range here is provisional.
+`package.json`). That capability is additive and **not yet released**, so this
+package is **not yet published to npm** either — installing it today only does
+something against a generator built from a branch that has theme support. The
+version range here is provisional.
