@@ -1,0 +1,12 @@
+//- The home page type: a hero built from the page's frontmatter, then the
+//- content. Reference it with `layout: pages/home.pug`. Uses `meta.title` and
+//- an optional `meta.subtitle`.
+extends ../layouts/layout.pug
+
+block content
+    section.hero
+        h1.hero__title= meta.title
+        if meta.subtitle
+            p.hero__subtitle= meta.subtitle
+    article.page
+        != content

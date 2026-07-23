@@ -1,0 +1,9 @@
+//- The default page type: page content wrapped in an <article>. Reference it
+//- from a page's frontmatter with `layout: pages/default.pug`. Override this
+//- file in your site's views/pages/ to restyle every default page at once,
+//- without touching the shared shell in layouts/layout.pug.
+extends ../layouts/layout.pug
+
+block content
+    article.page
+        != content

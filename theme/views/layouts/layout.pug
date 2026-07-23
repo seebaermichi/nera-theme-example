@@ -1,3 +1,6 @@
+//- The base shell every page type extends. It owns <head>, header, footer and
+//- scripts; page templates under views/pages/ fill the `content` block. A site
+//- overriding this one file reshells every page type at once.
 doctype html
 html(lang=meta.lang || app.lang || 'en')
     head
@@ -5,6 +8,7 @@ html(lang=meta.lang || app.lang || 'en')
     body
         include ../partials/header.pug
         main.content
-            != content
+            block content
+                != content
         include ../partials/footer.pug
         include ../partials/scripts.pug

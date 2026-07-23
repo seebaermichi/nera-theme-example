@@ -20,7 +20,11 @@ installed from npm or developed in place:
 ```
 theme/
     views/
-        layouts/layout.pug        the page shell
+        layouts/layout.pug        the base shell; owns <head>, header, footer,
+                                  scripts, and a `content` block
+        pages/
+            default.pug          page type: content in an <article>
+            home.pug             page type: a hero from frontmatter, then content
         partials/
             head.pug              <head>; links /css/main.css, includes head-extra
             head-extra.pug        empty override seam (add your own <link>/<meta>)
@@ -33,6 +37,31 @@ theme/
         js/main.js               ES-module entry point
     config/theme.yaml            theme defaults (documented; consumption is WIP)
 ```
+
+## Page types
+
+A page picks a template through its frontmatter `layout:` — a path relative to
+the views root. Each page template `extends` the base shell and fills its
+`content` block, so the shared chrome lives in exactly one place:
+
+```markdown
+---
+layout: pages/home.pug
+title: Welcome
+subtitle: A Nera site
+---
+Body content here.
+```
+
+| `layout:` value | renders |
+|---|---|
+| `pages/default.pug` | content wrapped in an `<article>` |
+| `pages/home.pug` | a hero from `title`/`subtitle`, then the content |
+
+A site can **override** a page type (drop `views/pages/home.pug` into the site —
+only that type forks) or **add** its own (`views/pages/landing.pug` that itself
+does `extends ../layouts/layout.pug`, reusing the theme's shell). Overriding
+`layouts/layout.pug` reshells every page type at once.
 
 ## Using it
 
