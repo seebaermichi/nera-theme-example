@@ -21,3 +21,11 @@ the release of `0.1.0` is deliberately held until it is.
     entry following the side-effect-in-entry convention.
 -   `config/theme.yaml` documenting the intended theme-defaults shape.
 -   Template-compile validation (`npm run validate`) run in CI before publish.
+
+### Changed
+
+-   Payload moved from the inner `theme/` wrapper to the package root
+    (`views/`, `assets/`, `config/`) to match the revised theme folder layout
+    (generator `ROADMAP-themes.md` §1b, 2026-07-23); `files` is now
+    `["views", "assets", "config"]`. Pre-release only — nothing was ever
+    published under the old layout.

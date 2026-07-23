@@ -7,35 +7,35 @@ It exists to prove and document the theme contract described in the generator's
 ## What a theme is
 
 A theme is an npm package that provides the base `views/` and `assets/` for a
-Nera site. The site's own `views/` and `assets/` override the theme **per file**;
-everything the site does not override keeps updating with `npm update`. This is
-WordPress child-theme semantics.
+Nera site. The site's own `theme/views/` and `theme/assets/` override the theme
+**per file**; everything the site does not override keeps updating with
+`npm update`. This is WordPress child-theme semantics.
 
 ## Package layout
 
-The payload lives under a `theme/` wrapper folder, so it never collides with the
-consuming site's own `views/`, and so the same layout works whether the theme is
-installed from npm or developed in place:
+The payload sits directly at the package root — a theme package contains nothing
+but the theme, so its root already *is* the theme root (no `theme/` wrapper). The
+consuming site groups its *own* presentation under `<site>/theme/` and overrides
+this package per file:
 
 ```
-theme/
-    views/
-        layouts/layout.pug        the base shell; owns <head>, header, footer,
-                                  scripts, and a `content` block
-        pages/
-            default.pug          page type: content in an <article>
-            home.pug             page type: a hero from frontmatter, then content
-        partials/
-            head.pug              <head>; links /css/main.css, includes head-extra
-            head-extra.pug        empty override seam (add your own <link>/<meta>)
-            header.pug            site header (BEM: .site-header__*)
-            footer.pug            site footer
-            scripts.pug           <script type="module">; includes scripts-extra
-            scripts-extra.pug     empty override seam
-    assets/
-        css/main.css             token-driven base stylesheet
-        js/main.js               ES-module entry point
-    config/theme.yaml            theme defaults (documented; consumption is WIP)
+views/
+    layouts/layout.pug        the base shell; owns <head>, header, footer,
+                              scripts, and a `content` block
+    pages/
+        default.pug          page type: content in an <article>
+        home.pug             page type: a hero from frontmatter, then content
+    partials/
+        head.pug              <head>; links /css/main.css, includes head-extra
+        head-extra.pug        empty override seam (add your own <link>/<meta>)
+        header.pug            site header (BEM: .site-header__*)
+        footer.pug            site footer
+        scripts.pug           <script type="module">; includes scripts-extra
+        scripts-extra.pug     empty override seam
+assets/
+    css/main.css             token-driven base stylesheet
+    js/main.js               ES-module entry point
+config/theme.yaml            theme defaults (documented; consumption is WIP)
 ```
 
 ## Page types
@@ -58,10 +58,10 @@ Body content here.
 | `pages/default.pug` | content wrapped in an `<article>` |
 | `pages/home.pug` | a hero from `title`/`subtitle`, then the content |
 
-A site can **override** a page type (drop `views/pages/home.pug` into the site —
-only that type forks) or **add** its own (`views/pages/landing.pug` that itself
-does `extends ../layouts/layout.pug`, reusing the theme's shell). Overriding
-`layouts/layout.pug` reshells every page type at once.
+A site can **override** a page type (drop `theme/views/pages/home.pug` into the
+site — only that type forks) or **add** its own (`theme/views/pages/landing.pug`
+that itself does `extends ../layouts/layout.pug`, reusing the theme's shell).
+Overriding `theme/views/layouts/layout.pug` reshells every page type at once.
 
 ## Using it
 
@@ -85,11 +85,11 @@ npm install ../nera-theme-example      # writes a file: dependency, symlinks it
 
 ## Customising without losing updates
 
-- **Change a colour or spacing:** ship `assets/css/custom.css` re-declaring the
-  tokens you want, and add it via an overridden `head-extra.pug`. Do **not**
+- **Change a colour or spacing:** ship `theme/assets/css/custom.css` re-declaring
+  the tokens you want, and add it via an overridden `head-extra.pug`. Do **not**
   override `main.css` — you would stop receiving its fixes.
-- **Change markup:** drop a file with the same path into your site's `views/`.
-  Only that file stops updating; everything else still does.
+- **Change markup:** drop a file with the same path into your site's
+  `theme/views/`. Only that file stops updating; everything else still does.
 
 ## Using it as a blueprint for your own theme
 
@@ -104,8 +104,9 @@ To build your own theme from it:
 2. **Rename the package** in `package.json` — `@yourscope/theme-<name>`, reset
    `version` to `0.1.0`, update `description`, `repository`, and `author`.
 3. **Keep the plumbing** that lets the generator find the package: `type`,
-   `files: ["theme"]`, and the `exports` entry exposing `./package.json`.
-4. **Edit the payload** under `theme/` — the layouts, page types, partials,
+   `files: ["views", "assets", "config"]`, and the `exports` entry exposing
+   `./package.json`.
+4. **Edit the payload** at the package root — the layouts, page types, partials,
    `assets/`, and `config/theme.yaml` are all yours to change. Keep the
    override seams (`head-extra.pug`, `scripts-extra.pug`) if you want consumers
    to extend without forking.

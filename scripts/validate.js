@@ -1,17 +1,17 @@
-// Pre-publish validation: compile every Pug template under theme/views.
+// Pre-publish validation: compile every Pug template under views/.
 //
 // A theme is mostly declarative (Pug/CSS/YAML), so there is little to unit-test
 // in the usual sense — but compiling the templates is a real gate: Pug resolves
 // every include/extends at compile time, so a renamed or missing partial, or a
 // syntax error, fails here rather than in a consumer's build. This is dev-only
-// and never shipped (the npm tarball is `files: ["theme"]`).
+// and never shipped (the npm tarball is `files: ["views", "assets", "config"]`).
 
 import { readdirSync, statSync } from 'fs'
 import { join, extname } from 'path'
 import { fileURLToPath } from 'url'
 import pug from 'pug'
 
-const VIEWS = fileURLToPath(new URL('../theme/views/', import.meta.url))
+const VIEWS = fileURLToPath(new URL('../views/', import.meta.url))
 
 function walk(dir) {
     return readdirSync(dir).flatMap((name) => {

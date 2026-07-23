@@ -19,7 +19,9 @@
         "static-site-generator"
     ],
     "files": [
-        "theme"
+        "views",
+        "assets",
+        "config"
     ],
     "exports": {
         "./package.json": "./package.json"
