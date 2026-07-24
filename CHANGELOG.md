@@ -5,11 +5,10 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.1.0] - 2026-07-24
 
-Not yet published. This package requires a Nera generator with theme support
-(`nera.generator` in `package.json`), which is additive and not yet released;
-the release of `0.1.0` is deliberately held until it is.
+First published release. Requires a Nera generator with theme support
+(`nera.generator`), available since generator 4.6.0.
 
 ### Added
 
