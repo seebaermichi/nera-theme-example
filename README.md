@@ -4,6 +4,8 @@ The minimal reference implementation of an **installable, updatable Nera theme**
 It exists to prove and document the theme contract described in the generator's
 `ROADMAP-themes.md`; it is intentionally plain rather than pretty.
 
+📖 **Documentation:** [nera.js.org](https://nera.js.org)
+
 ## What a theme is
 
 A theme is an npm package that provides the base `views/` and `assets/` for a
