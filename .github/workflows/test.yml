@@ -1,0 +1,39 @@
+name: Test
+
+on:
+    push:
+        branches: [main, master]
+    pull_request:
+        branches: [main, master]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: false
+            matrix:
+                # Node 18 is deliberately absent: it reached EOL 2025-04-30 and
+                # the package declares `engines.node: >=20.0.0`.
+                node-version: [20, 22]
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            # A theme is declarative, so there is no unit-test suite here. The
+            # equivalent gate is compiling every Pug template: `extends` and
+            # `include` resolve at compile time, so a renamed or missing partial
+            # fails here rather than in a consumer's build. publish.yml runs the
+            # same check, but only on a v* tag — this brings it to every push
+            # and pull request, so Dependabot PRs get a real signal too.
+            - name: Validate templates
+              run: npm run validate
