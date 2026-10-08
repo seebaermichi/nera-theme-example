@@ -5,6 +5,16 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2026-10-08
+
+Documentation only — no template, asset or config changed.
+
+### Fixed
+
+-   "Using it" now leads with `nera new my-site --theme example`, which leaves
+    out the starter templates that would hide this theme's, and says that
+    `nera validate` flags them (`theme-shadowed`) on an existing site.
+
 ## [0.1.1] - 2026-10-08
 
 Documentation only — no template, asset or config changed.

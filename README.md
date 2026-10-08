@@ -78,10 +78,20 @@ npm install @nera-static/theme-example
 theme: example        # → @nera-static/theme-example
 ```
 
-A site scaffolded with `nera new` ships its own `theme/views/layouts/layout.pug`
-and `theme/views/pages/default.pug`. Those override this theme's files of the
+Starting a new site? `nera new` does all of the above in one step and leaves
+out its starter templates (needs `@nera-static/nera` 1.1.0+):
+
+```bash
+npx @nera-static/nera new my-site --theme example
+```
+
+Adding the theme to an **existing** site scaffolded with plain `nera new`: that
+site has its own `theme/views/layouts/layout.pug` and
+`theme/views/pages/default.pug`, and they override this theme's files of the
 same path, so the theme's shell and `default` page type stay hidden until you
 delete the site's copies (or keep only the ones you mean to override).
+`nera validate` flags them as `theme-shadowed` on sites scaffolded with
+`@nera-static/nera` 1.1.0+.
 
 To develop this theme against a real site without publishing, install it by
 path — the npm equivalent of a Composer path repository:
