@@ -78,6 +78,11 @@ npm install @nera-static/theme-example
 theme: example        # → @nera-static/theme-example
 ```
 
+A site scaffolded with `nera new` ships its own `theme/views/layouts/layout.pug`
+and `theme/views/pages/default.pug`. Those override this theme's files of the
+same path, so the theme's shell and `default` page type stay hidden until you
+delete the site's copies (or keep only the ones you mean to override).
+
 To develop this theme against a real site without publishing, install it by
 path — the npm equivalent of a Composer path repository:
 
@@ -121,8 +126,6 @@ what make a theme updatable rather than fork-once.
 
 ## Requirements
 
-Requires a Nera generator with theme support (`nera.generator` in
-`package.json`). That capability is additive and **not yet released**, so this
-package is **not yet published to npm** either — installing it today only does
-something against a generator built from a branch that has theme support. The
-version range here is provisional.
+Requires `@nera-static/core` 4.6.0 or later — the engine version that added
+theme support, declared as `nera.generator` in `package.json`. A site that
+depends on `@nera-static/nera` already gets a recent enough engine.
