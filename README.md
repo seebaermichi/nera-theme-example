@@ -1,5 +1,8 @@
 # @nera-static/theme-example
 
+[![Test](https://github.com/seebaermichi/nera-theme-example/actions/workflows/test.yml/badge.svg)](https://github.com/seebaermichi/nera-theme-example/actions/workflows/test.yml)
+[![npm version](https://img.shields.io/npm/v/@nera-static/theme-example)](https://www.npmjs.com/package/@nera-static/theme-example)
+
 The minimal reference implementation of an **installable, updatable Nera theme**.
 It exists to prove and document the theme contract described in the generator's
 `ROADMAP-themes.md`; it is intentionally plain rather than pretty.
