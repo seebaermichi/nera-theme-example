@@ -5,8 +5,11 @@
 # override a single value and inherit the rest, and still receive new keys the
 # theme adds later.
 #
-# NOTE: config/theme.yaml consumption (exposing app.theme.config to templates)
-# is a later slice and not wired up yet. This file documents the intended shape.
+# Core merges this file with the site's and exposes the result to templates as
+# `app.theme.config` (@nera-static/core 4.6.0+). This example theme's own
+# templates do not read it yet: assets/css/main.css sets its colours directly,
+# so overriding `colors.primary` changes nothing on the page until a template
+# emits it. The file shows the shape a theme's defaults take.
 
 # Human-readable label, for a future themes UI.
 label: Example

@@ -5,6 +5,15 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - 2026-10-13
+
+### Fixed
+
+-   `config/theme.yaml`'s header no longer says that theme config is "not
+    wired up yet": core has exposed it as `app.theme.config` since 4.6.0. It
+    now says that this example's own templates do not read it, so overriding
+    `colors.primary` has no visible effect.
+
 ## [0.1.3] - 2026-10-11
 
 ### Changed
